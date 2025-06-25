@@ -15,4 +15,4 @@ jobs:
   verify:
     runs-on: ubuntu-latest
     steps:
-      - run: "echo 'Verifying compliance"
+      - run: "echo 'Verifying compliance'"
