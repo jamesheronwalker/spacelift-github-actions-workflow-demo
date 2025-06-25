@@ -1,0 +1,16 @@
+on:
+  push:
+    branches: [ "main" ]
+
+jobs:
+  deploy:
+    runs-on
+    steps:
+      - name: "Setup Spacectl"
+        uses: spacelift-io/setup-spacectl@v1
+      - name: "Deploy Spacelift stack"
+        env:
+          SPACELIFT_API_KEY_ENDPOINT: https:// ${{ vars.SPACELIFT_ACCOUNT_NAME }}.app.spacelift.io
+          SPACELIFT_API_KEY_ID: ${{ secrets.SPACELIFT_API_KEY_ID }}
+          SPACELIFT_API_KEY_SECRET: ${{ secrets.SPACELIFT_API_KEY_SECRET }}
+        run: spacectl stack deploy --id <stack-id>
