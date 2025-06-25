@@ -1,0 +1,18 @@
+on:
+  push:
+    branches: [" main" ]
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: "Deploy Spacelift stack"
+        id: spacelift
+        uses: cloudposse/github-action-spacelift-stack-deploy@main
+        with:
+          stack: ${{ vars.SPACELIFT_STACK_ID }}
+          organization: ${{ vars.SPACELIFT_ACCOUNT_NAME }}
+          api_key_id: ${{ secrets.SPACELIFT_API_KEY_ID }}
+          api_key_secret: ${{ secrets.SPACELIFT_API_KEY_SECRET }}
+    outputs:
+      outputs: ${{ steps.spacelift.outputs.outputs }}
